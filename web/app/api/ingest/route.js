@@ -23,7 +23,7 @@ export async function POST(req) {
 
     // 3. Prompt Gemini 1.5 Flash with JSON mode
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash", 
+      model: "gemini-flash-latest", 
       generationConfig: { responseMimeType: "application/json" } 
     });
     

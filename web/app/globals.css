@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-hover: #1f1f23;
+  --border: #27272a;
+  --border-active: #3f3f46;
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --danger: #ef4444;
+  --danger-glow: rgba(239, 68, 68, 0.12);
+  --success: #22c55e;
+  --muted: #a1a1aa;
+  --paul-accent: #818cf8;
+  --sam-accent: #34d399;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-border: var(--border);
+  --color-border-active: var(--border-active);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-danger: var(--danger);
+  --color-danger-glow: var(--danger-glow);
+  --color-success: var(--success);
+  --color-muted: var(--muted);
+  --color-paul: var(--paul-accent);
+  --color-sam: var(--sam-accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Pulse animation for active conflicts */
+@keyframes conflict-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 20px 4px rgba(239, 68, 68, 0.15); }
+}
+
+.conflict-pulse {
+  animation: conflict-pulse 2s ease-in-out infinite;
+}
+
+/* Slide-in animation for new conflicts */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s ease-out forwards;
+}
+
+/* Fade-in for log entries */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+/* Glow effect for the submit button */
+.btn-glow {
+  transition: all 0.2s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.35);
+}
+
+/* Status dot pulse */
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.dot-pulse {
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--card);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-active);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
 }
